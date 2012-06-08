@@ -3,9 +3,10 @@
 use li3_analytics\extensions\Trackers;
 
 Trackers::add('Google', array(
-	'adapter' => 'GoogleAnalytics',
-	'account' => 'UA-999999-1',
-	'domain' => 'dev.com'
+	'adapter' => 'GoogleAnalytics', // The google adapter
+	'account' => 'UA-999999-1', // your GA account
+	// 'domain' => 'dev.com', // set if you are using with multiple sub domains, ignore otherwise
+	// 'manyTopLevel' => true, // set if you are using GA with multiple top level domains
 ));
 
 Trackers::add('Optimizely', array(
