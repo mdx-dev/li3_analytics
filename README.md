@@ -100,6 +100,25 @@ The plugin comes with a helper (go figure!) that should be used to load your tra
 
 The trackers will automatically be loaded into the proper sections, however you can override the trackers sections by changing the `section` key in the `Trackers::add()` adapter.
 
+#### Load a single tracker
+
+Remember that name you gave your tracker in `Trackers::add()`, well you can manually call that tracker and put it whereever you'd like! __You're welcome!__
+
+Here's how:
+
+~~~ php
+<?php echo $this->analytics->google(); ?>
+~~~
+
+Wait, what? That's it?! 
+
+Yes.
+
+> While you can name the tracker whatever you'd like you should be aware that the name is slugified and converted to lowercase before it actually gets added.
+> This means that if you name a tracker "__Google Analytics Mang__" it will be converted to `google-analytics-mang`; this is the name you'd need to call with the helper.
+
+#### Body helpers
+
 > A helper for `$this->analytics->body('prepend')` and `$this->analytics->body('prepend')` will be added as tracker adapters that need that support are included.
 
 ## Enjoy
@@ -107,8 +126,6 @@ The trackers will automatically be loaded into the proper sections, however you 
 That's it! the proper code for your tracker should now be rendered into your template, no more hassle.
 
 ## Upcoming
-
-I am working on a helper method to load individual trackers based on the name they were given in `Trackers::add()`
 
 ### Future Trackers
 Here is a list of trackers I would like to add support for.

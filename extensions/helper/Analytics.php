@@ -56,6 +56,18 @@ class Analytics extends \lithium\template\Helper {
 
 	}
 
+	public function __call($method, $options){
+
+		$tracker = Trackers::get($method);
+
+		if(!empty($tracker)){
+
+			echo $this->_track($tracker);
+
+		}
+
+	}
+
 	/**
 	 * Render the tracker info from the oject configuration
 	 * @param  object $tracker Tracker adapter

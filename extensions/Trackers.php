@@ -2,21 +2,9 @@
 
 namespace li3_analytics\extensions;
 
-/**
- * Configuration class for li3_analytics
- *
- * Adapter path is `adapter.tracking`
- * {{{
- * Trackings::config(array(
- *     'adapter' => 'GoogleAnalytics',
- *     'account' => 'UA-XXXXX-X',
- *     'commands' => array(
- *         array('_setDomainName', 'example.org'),
- *         array('_trackPageview')
- *     )
- * ));
- * }}}
- */
+use lithium\util\String;
+use lithium\util\Inflector;
+
 class Trackers extends \lithium\core\Adaptable {
 	/**
 	 * Which session variable will be used to store the commands.
@@ -64,7 +52,7 @@ class Trackers extends \lithium\core\Adaptable {
 			'commands' => array()
 		);
 
-		return static::$_configurations[$name] = $config + $defaults;
+		return static::$_configurations[strtolower(Inflector::slug($name))] = $config + $defaults;
 	}
 
 	/**
