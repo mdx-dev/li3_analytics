@@ -1,8 +1,11 @@
 <?php
-$commands = array_map(function($item) {
-	return '_gaq.push('.str_replace('"', '\'', json_encode($item)).'); ' . "\n";
-}, $tracking->commands());
-$commands = implode('', $commands);
+
+	$commands = array_map(function($item) {
+		return '_gaq.push('.str_replace('"', '\'', json_encode($item)).'); ' . "\n";
+	}, $tracking->commands());
+
+	$commands = implode('', $commands);
+
 ?>
 
 <script type="text/javascript">
@@ -15,4 +18,5 @@ $commands = implode('', $commands);
 		ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';
 		var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);
 	})();
+	
 </script>

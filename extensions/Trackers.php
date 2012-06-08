@@ -17,13 +17,13 @@ namespace li3_analytics\extensions;
  * ));
  * }}}
  */
-class Trackings extends \lithium\core\Adaptable {
+class Trackers extends \lithium\core\Adaptable {
 	/**
 	 * Which session variable will be used to store the commands.
 	 *
 	 * @var string
 	 */
-	public static $name = 'Trackings';
+	public static $name = 'Trackers';
 
 	/**
 	 * To be re-defined in sub-classes.
@@ -31,6 +31,12 @@ class Trackings extends \lithium\core\Adaptable {
 	 * @var object `Collection` of configurations, indexed by name.
 	 */
 	protected static $_configurations = array();
+
+	/**
+	 * Groups trackers by the section they're supposed to be loaded from
+	 * @var array
+	 */
+	protected static $_sections = array();
 
 	/**
 	 * Path where to look for tracking adapters.
@@ -47,42 +53,40 @@ class Trackings extends \lithium\core\Adaptable {
 	protected static $_classes = array(
 		'session' => 'lithium\\storage\\Session'
 	);
-	/**
-	 * Override the default config to have only one
-	 * kind of config split by environment
-	 *
-	 * @param array $config configuration to set for 'default'
-	 * @return given configuration
-	 * @see lithium\core\Adaptable::config()
-	 */
-	public static function config($config=null) {
-		if ($config && is_array($config)) {
-			return parent::config(array('default' => $config));
-		}
-		return parent::config($config);
+
+	public static function add($name, array $config = array()) {
+
+		$session = static::$_classes['session'];
+
+		$defaults = array(
+			'adapter'     => '',
+			'account'    => '',
+			'commands' => array()
+		);
+
+		return static::$_configurations[$name] = $config + $defaults;
 	}
 
 	/**
-	 * Obtain the tracking from the configuration.
+	 * Obtain the tracker
 	 */
-	public static function get() {
-		$name = 'default';
-		$session = static::$_classes['session'];
+	public static function get($name = null, array $options = array()) {
 
-		$config = static::_config('default');
-
-		$commands = $session::read(static::$name, compact('name')) ?: array();
-		if ($config && $commands) {
-			$config += array('commands' => array());
-			$config['commands'] = array_merge(
-				$config['commands'],
-				$commands
-			);
+		if($name === null){
+			foreach(static::$_configurations as $tracker => $config){
+				static::$_sections[static::adapter($tracker)->section()][$tracker] = static::adapter($tracker);
+			}
+			return static::$_sections;
 		}
-		static::reset();
 
-		$class = static::_class($config, static::$_adapters);
-		return new $class($config);
+		if (!isset(static::$_configurations[$name])) {
+			return null;
+		}
+
+		$settings = static::$_configurations[$name];
+
+		return static::adapter($name);
+
 	}
 
 	/**

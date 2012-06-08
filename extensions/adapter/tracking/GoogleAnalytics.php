@@ -6,8 +6,7 @@ namespace li3_analytics\extensions\adapter\tracking;
  * http://code.google.com/intl/en/apis/analytics/docs/tracking/asyncTracking.html
  * http://code.google.com/intl/en/apis/analytics/docs/gaJS/gaJSApi.html
  */
-class GoogleAnalytics extends \lithium\core\Object
-{
+class GoogleAnalytics extends \lithium\core\Object {
 	/**
 	 * Google Analytics account
 	 *
@@ -16,15 +15,45 @@ class GoogleAnalytics extends \lithium\core\Object
 	protected $_account;
 
 	/**
+	 * Domain to be used
+	 * One domain with multiple subdomains
+	 * @var string
+	 */
+	protected $_domain = null;
+
+	/**
+	 * What section of the page should the script be loaded?
+	 * @var string
+	 */
+	protected $_section = "append_head";
+
+	/**
+	 * Way to load tracker
+	 * `block`, `inline`
+	 * `block` loads a javascript block
+	 * `inline` loads a javascript link.
+	 * @var string
+	 */
+	protected $_type = "block";
+
+	protected $_manyTopLevel = false;
+
+	/**
 	 * The commands to be called
 	 *
 	 * @var array
 	 */
-	protected $_commands = array(
-		array('_trackPageview')
-	);
+	protected $_commands = array();
 
-	protected $_autoConfig = array('account', 'commands');
+	protected $_autoConfig = array('account', 'commands', 'domain', 'manyTopLevel', 'section');
+
+	/**
+	 * Return the trackers section
+	 * @return string
+	 */
+	public function section(){
+		return $this->_section;
+	}
 
 	/**
 	 * Tracking account used
@@ -32,7 +61,15 @@ class GoogleAnalytics extends \lithium\core\Object
 	 * @return string tracking account
 	 */
 	public function account() {
-		return $this->_account;
+		return trim($this->_account);
+	}
+
+	public function domain(){
+		return $this->_domain;
+	}
+
+	public function type(){
+		return $this->_type;
 	}
 
 	/**
@@ -41,9 +78,18 @@ class GoogleAnalytics extends \lithium\core\Object
 	 * @return array list of commands to run on the tracker
 	 */
 	public function commands() {
-		return array_merge(
-			array(array('_setAccount', trim($this->_account))),
-			$this->_commands
+		
+		$commands = array(
+			array('_setAccount', $this->_account),
+			array('_trackPageview')
 		);
+
+		if($this->_domain !== null) $commands[] = array('_setDomainName', $this->_domain);
+		if($this->_manyTopLevel !== false && is_bool($this->_manyTopLevel)) $commands[] = array('_setAllowLinker', $this->_manyTopLevel);
+
+		$commands = array_merge($commands, $this->_commands);
+
+		return array_map("unserialize", array_unique(array_map("serialize", $commands)));
+
 	}
 }

@@ -9,12 +9,12 @@ class GoogleAnalyticsTest extends \lithium\test\Unit
 	function test_default()
 	{
 		$ga = new GoogleAnalytics(array(
-			'account' => 'test'
+			'account' => 'abc123'
 		));
 
-		$this->assertEqual('test', $ga->account());
+		$this->assertEqual('abc123', $ga->account());
 		$expected = array(
-			array('_setAccount', 'test'),
+			array('_setAccount', 'abc123'),
 			array('_trackPageview'),
 		);
 		$this->assertEqual($expected, $ga->commands());
@@ -23,7 +23,7 @@ class GoogleAnalyticsTest extends \lithium\test\Unit
 	function test_commands()
 	{
 		$ga = new GoogleAnalytics(array(
-			'account' => 'test',
+			'account' => 'abc123',
 			'commands' => array(
 				array('_hello'),
 				array('a', 'b', 'c', 'd'),
@@ -31,7 +31,7 @@ class GoogleAnalyticsTest extends \lithium\test\Unit
 		));
 
 		$expected = array(
-			array('_setAccount', 'test'),
+			array('_setAccount', 'abc123'),
 			array('_hello'),
 			array('a', 'b', 'c', 'd'),
 		);

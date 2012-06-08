@@ -7,7 +7,7 @@ use lithium\action\Request;
 use lithium\action\Response;
 use lithium\tests\mocks\template\helper\MockHtmlRenderer;
 use li3_analytics\extensions\helper\Analytics;
-use li3_analytics\extensions\Trackings;
+use li3_analytics\extensions\Trackers;
 
 class AnalyticsTest extends \lithium\test\Unit
 {
@@ -35,7 +35,7 @@ class AnalyticsTest extends \lithium\test\Unit
 		$this->analytics = new Analytics(array('context' => &$this->context));
 		$this->account = sprintf('UA-%05d-X',rand(1,99999));
 
-		Trackings::config(array(
+		Trackers::add('test', array(
 			'account' => $this->account,
 			'adapter' => 'GoogleAnalytics',
 		));
@@ -48,7 +48,7 @@ class AnalyticsTest extends \lithium\test\Unit
 			Router::connect($route);
 		}
 		unset($this->analytics);
-		Trackings::reset();
+		Trackers::reset();
 	}
 
 	function test_script() {
@@ -74,7 +74,7 @@ class AnalyticsTest extends \lithium\test\Unit
 	}
 
 	function test_track_page() {
-		Trackings::push('_setDomainName', 'example.org');
+		Trackers::push('_setDomainName', 'example.org');
 		$result = $this->analytics->script();
 		$this->assertTags($result, array(
 			'script' => array(

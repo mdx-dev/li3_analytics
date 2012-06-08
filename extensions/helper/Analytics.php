@@ -2,42 +2,102 @@
 
 namespace li3_analytics\extensions\helper;
 
-use li3_analytics\extensions\Trackings;
+use li3_analytics\extensions\Trackers;
 use lithium\template\View;
 use lithium\g11n\Message;
 use lithium\core\Environment;
 use lithium\core\ConfigException;
 
-class Analytics extends \lithium\template\Helper
-{
+class Analytics extends \lithium\template\Helper {
+
+	protected $_locations = array();
 	protected $_view;
+	protected $_sections;
 
-	// http://code.google.com/intl/fr/apis/analytics/docs/tracking/asyncTracking.html
-	function script() {
-		try {
-			$tracking = Trackings::get();
-			$class = get_class($tracking);
-			$adapter = mb_substr($class, mb_strrpos($class, '\\')+1);
-			$template = mb_strtolower($adapter);
-			$library = 'li3_analytics';
-			$view = $this->build_view();
+	public function _init(){
+		$this->_sections = Trackers::get();
+		parent::_init();
+	}
 
-			return $view->render(
-				'element',
+	/**
+	 * Build out tracking scripts for header trackers
+	 * @return string
+	 */
+	public function head($area = null) {
+
+		if($area == 'prepend'){
+
+			if(!empty($this->_sections['prepend_head']) && $section = $this->_sections['prepend_head']){
+
+				foreach($section as $tracker){
+					// print_r($tracker);
+					echo $this->_track($tracker);
+				}
+
+			}
+
+		}
+
+		if($area == 'append'){
+
+			if(!empty($this->_sections['append_head']) && $section = $this->_sections['append_head']){
+
+				foreach($section as $tracker){
+					// print_r($tracker);
+					echo $this->_track($tracker);
+				}
+
+			}
+
+		}
+
+		// Just return blank
+		return null;
+
+	}
+
+	/**
+	 * Render the tracker info from the oject configuration
+	 * @param  object $tracker Tracker adapter
+	 * @return [type]          [description]
+	 */
+	protected function _track($tracking){
+
+		// Tracking object
+		$class = get_class($tracking);
+		// Adapter Name
+		$adapter = mb_substr($class, mb_strrpos($class, '\\')+1);
+		// Element Template Name
+		$template = mb_strtolower($adapter);
+
+		$library = 'li3_analytics';
+
+		if($tracking->type() == 'inline'){
+
+			return $this->_context->html->script("{$tracking->uri()}{$tracking->project()}") . "\n\t";
+
+		}
+
+		if($tracking->type() == 'block'){
+
+			// initialize the template object
+			$view = $this->renderView();
+
+			return $view->render('element',
 				compact('tracking'),
 				compact('template', 'library')
 			);
-		} catch (ConfigException $e) {
-			if (!Environment::is('production')) {
-				return '<!-- li3_analytics: '.$e->getMessage().' -->';
-			}
+
 		}
+
+
 	}
 
-	// TODO:
-	// http://code.google.com/intl/fr/apis/analytics/docs/gaJS/gaJSApiBasicConfiguration.html#_gat.GA_Tracker_._trackPageview
-
-	protected function build_view() {
+	/**
+	 * Renders view element
+	 * @return object
+	 */
+	protected function renderView() {
 		if (!isset($this->_view)) {
 			$this->_view = new View(array(
 				'paths' => array(
@@ -48,4 +108,5 @@ class Analytics extends \lithium\template\Helper
 		}
 		return $this->_view;
 	}
+
 }
