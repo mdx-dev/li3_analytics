@@ -1,0 +1,14 @@
+<?php
+
+use li3_analytics\extensions\Trackers;
+
+Trackers::add('Google', array(
+	'adapter' => 'GoogleAnalytics',
+	'account' => 'UA-999999-1',
+	'domain' => 'dev.com'
+));
+
+Trackers::add('Optimizely', array(
+	'adapter' => 'Optimizely',
+	'project' => 'xxx123'
+));
