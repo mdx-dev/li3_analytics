@@ -86,7 +86,7 @@ class Analytics extends \lithium\template\Helper {
 
 		if($tracking->type() == 'inline'){
 
-			return $this->_context->html->script("{$tracking->uri()}{$tracking->project()}") . "\n\t";
+			return $this->_context->html->script("{$tracking->uri()}{$tracking->key()}") . "\n\t";
 
 		}
 

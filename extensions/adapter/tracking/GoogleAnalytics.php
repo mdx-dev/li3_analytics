@@ -64,6 +64,14 @@ class GoogleAnalytics extends \lithium\core\Object {
 		return trim($this->_account);
 	}
 
+	/**
+	 * Unified method to get account details
+	 * @return string
+	 */
+	public function key(){
+		return $this->account();
+	}
+
 	public function domain(){
 		return $this->_domain;
 	}

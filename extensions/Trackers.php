@@ -84,21 +84,21 @@ class Trackers extends \lithium\core\Adaptable {
 	 * Trackings::push('_setDomain', 'example.org');
 	 * }}}
 	 */
-	public static function push(/* anything */) {
-		$name = 'default';
-		$session = static::$_classes['session'];
+	// public static function push(/* anything */) {
+	// 	$name = 'default';
+	// 	$session = static::$_classes['session'];
 
-		$commands = $session::read(static::$name, compact('name')) ?: array();
-		$commands[] = func_get_args();
-		$session::write(static::$name, $commands, compact('name'));
-	}
+	// 	$commands = $session::read(static::$name, compact('name')) ?: array();
+	// 	$commands[] = func_get_args();
+	// 	$session::write(static::$name, $commands, compact('name'));
+	// }
 
 	/**
 	 * Reset the stored commands using previous push.
 	 */
-	public static function reset() {
-		$name = 'default';
-		$session = static::$_classes['session'];
-		$session::write(static::$name, array());
-	}
+	// public static function reset() {
+	// 	$name = 'default';
+	// 	$session = static::$_classes['session'];
+	// 	$session::write(static::$name, array());
+	// }
 }

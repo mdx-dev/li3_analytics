@@ -47,6 +47,14 @@ class Optimizely extends \lithium\core\Object {
 		return $this->_project;
 	}
 
+	/**
+	 * Unified method to get account details
+	 * @return string
+	 */
+	public function key(){
+		return $this->project();
+	}
+
 	public function type(){
 		return $this->_type;
 	}
