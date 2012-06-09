@@ -22,9 +22,13 @@ Modify your projects `composer.json` file
 
 Run `php composer.phar install` (or `php composer.phar update`) and, aside from adding it to your Libraries, you should be good to go.
 
+***
+
 __Submodule__ (If you feel like it)
 
 From the root of your app run `git submodule add git://github.com/joseym/li3_analytics.git libraries/li3_analytics`
+
+***
 
 __Clone Directly__ (meh)
 
@@ -119,7 +123,7 @@ Yes.
 
 #### Body helpers
 
-> A helper for `$this->analytics->body('prepend')` and `$this->analytics->body('prepend')` will be added as tracker adapters that need that support are included.
+> A helper for `$this->analytics->body('prepend')` and `$this->analytics->body('append')` will be added as tracker adapters that need that support are included.
 
 ## Enjoy
 
