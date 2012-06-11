@@ -1,0 +1,26 @@
+<?php
+
+use li3_analytics\extensions\Trackers;
+
+Trackers::add('Google', array( // name it what you'd like
+	'adapter' => 'GoogleAnalytics', // The google adapter
+	'account' => 'UA-999999-1', // your GA account
+	// 'section' => 'append_head', // What helper section to load tracking in your template `append_head | prepend_head`
+	// 'domain' => 'dev.com', // set if you are using with multiple sub domains, ignore otherwise
+	// 'manyTopLevel' => true, // set if you are using GA with multiple top level domains
+));
+		
+Trackers::add('Optimizely', array(
+	'adapter' => 'Optimizely', // The optimizely adapter
+	'project' => 'xxx123' // the optimizely project id
+	// 'section' => 'prepend_head', // What helper section to load tracking in your template `append_head | prepend_head`
+));
+
+Trackers::add('Webtrends', array(
+	'adapter'	=> 'Webtrends',
+	'DCSID' 	=> 'dcsXXXXXXXXXXXXXXXXXXXXX_XXXX',
+	'domain' 	=> 'www.test.com',
+	// 'version'	=> '9.4.0', // Analytics 9 by default
+	// 'script'		=> '/js/webtrends.js', // location of webtrends script (relative to webroot)
+	// 'section' 	=> 'append_body' // Section to build script block into
+));

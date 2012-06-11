@@ -1,0 +1,26 @@
+{
+	"name": "joseym/li3_analytics",
+	"type": "li3-libraries",
+	"description": "Analytic Plugin for Lithium PHP",
+	"keywords": ["google analytics", "optimizely", "js", "lithium", "li3", "analytics"],
+	"homepage": "https://github.com/joseym/li3_analytics/blob/master/README.md",
+	"license": "MIT License",
+	"authors": [
+		{
+			"name": "Josey Morton",
+			"email": "me@joseymorton.com",
+			"homepage": "https://github.com/joseym"
+		},
+		{
+			"name": "Yoan Blanc",
+			"email": "yoan@dosimple.ch",
+			"homepage": "http://yoan.dosimple.ch/blog/"
+		}
+	],
+
+	"require": {
+		"php": ">=5.3",
+		"joseym/li3_installer": "master"
+	}
+
+}
