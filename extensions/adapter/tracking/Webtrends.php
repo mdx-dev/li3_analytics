@@ -2,7 +2,7 @@
 
 namespace li3_analytics\extensions\adapter\tracking;
 
-class Webtrends extends \lithium\core\Object {
+class Webtrends extends \li3_analytics\extensions\adapter\Tracker {
 	/**
 	 * Webtrends Data Collection Server ID
 	 *

@@ -20,86 +20,38 @@ class Analytics extends \lithium\template\Helper {
 	}
 
 	/**
-	 * Build out tracking scripts for header trackers
+	 * Build out tracking scripts for head, body or specific trackers
 	 * @return string
 	 */
-	public function head($area = null) {
-
-		if($area == 'prepend'){
-
-			if(!empty($this->_sections['prepend_head']) && $section = $this->_sections['prepend_head']){
-
-				foreach($section as $tracker){
-					// print_r($tracker);
-					echo $this->_track($tracker);
-				}
-
-			}
-
-		}
-
-		if($area == 'append'){
-
-			if(!empty($this->_sections['append_head']) && $section = $this->_sections['append_head']){
-
-				foreach($section as $tracker){
-					// print_r($tracker);
-					echo $this->_track($tracker);
-				}
-
-			}
-
-		}
-
-		// Just return blank
-		return null;
-
-	}
-
-	/**
-	 * Build out tracking scripts for header trackers
-	 * @return string
-	 */
-	public function body($area = null) {
-
-		if($area == 'prepend'){
-
-			if(!empty($this->_sections['prepend_body']) && $section = $this->_sections['prepend_body']){
-
-				foreach($section as $tracker){
-					// print_r($tracker);
-					echo $this->_track($tracker);
-				}
-
-			}
-
-		}
-
-		if($area == 'append'){
-
-			if(!empty($this->_sections['append_body']) && $section = $this->_sections['append_body']){
-
-				foreach($section as $tracker){
-					// print_r($tracker);
-					echo $this->_track($tracker);
-				}
-
-			}
-
-		}
-
-		// Just return blank
-		return null;
-
-	}
-
 	public function __call($method, $options){
 
+		// Build block sections
+		if($method === 'head' OR $method === 'body'){
+
+			$position = ($options[0] == 'prepend' OR $options[0] == 'append') ? $options[0] : false;
+
+			if($position){
+
+				if(!empty($this->_sections["{$position}_{$method}"]) && $section = $this->_sections["{$position}_{$method}"]){
+
+					foreach($section as $tracker){
+						echo "\n{$this->_track($tracker)}\n";
+					}
+
+				}
+
+			}
+
+			return;
+
+		}
+
+		// Build specific tracker
 		$tracker = Trackers::get($method);
 
 		if(!empty($tracker)){
 
-			echo $this->_track($tracker);
+			return $this->_track($tracker);
 
 		}
 

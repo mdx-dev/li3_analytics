@@ -24,7 +24,7 @@ class Trackers extends \lithium\core\Adaptable {
 	 * Groups trackers by the section they're supposed to be loaded from
 	 * @var array
 	 */
-	protected static $_sections = array();
+	public static $_sections = array();
 
 	/**
 	 * Path where to look for tracking adapters.
@@ -42,14 +42,16 @@ class Trackers extends \lithium\core\Adaptable {
 		'session' => 'lithium\\storage\\Session'
 	);
 
+	public static function configs(){
+		return static::$_configurations;
+	}
+
 	public static function add($name, array $config = array()) {
 
 		$session = static::$_classes['session'];
 
 		$defaults = array(
-			'adapter'     => '',
-			'account'    => '',
-			'commands' => array()
+			'adapter'     => ''
 		);
 
 		return static::$_configurations[strtolower(Inflector::slug($name))] = $config + $defaults;
@@ -61,10 +63,19 @@ class Trackers extends \lithium\core\Adaptable {
 	public static function get($name = null, array $options = array()) {
 
 		if($name === null){
+
 			foreach(static::$_configurations as $tracker => $config){
-				static::$_sections[static::adapter($tracker)->section()][$tracker] = static::adapter($tracker);
+
+				$section = static::adapter($tracker)->section();
+				// $sections = static::adapter($tracker)->sections();
+				// unset($sections[0]);
+
+				static::$_sections[$section][$tracker] = static::adapter($tracker);
+
 			}
+
 			return static::$_sections;
+
 		}
 
 		if (!isset(static::$_configurations[$name])) {
@@ -93,12 +104,4 @@ class Trackers extends \lithium\core\Adaptable {
 	// 	$session::write(static::$name, $commands, compact('name'));
 	// }
 
-	/**
-	 * Reset the stored commands using previous push.
-	 */
-	// public static function reset() {
-	// 	$name = 'default';
-	// 	$session = static::$_classes['session'];
-	// 	$session::write(static::$name, array());
-	// }
 }

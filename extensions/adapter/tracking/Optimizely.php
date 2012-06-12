@@ -2,7 +2,7 @@
 
 namespace li3_analytics\extensions\adapter\tracking;
 
-class Optimizely extends \lithium\core\Object {
+class Optimizely extends \li3_analytics\extensions\adapter\Tracker {
 
 	/**
 	 * Optimizely Project code

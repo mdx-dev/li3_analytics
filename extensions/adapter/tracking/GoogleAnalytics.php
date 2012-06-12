@@ -6,7 +6,8 @@ namespace li3_analytics\extensions\adapter\tracking;
  * http://code.google.com/intl/en/apis/analytics/docs/tracking/asyncTracking.html
  * http://code.google.com/intl/en/apis/analytics/docs/gaJS/gaJSApi.html
  */
-class GoogleAnalytics extends \lithium\core\Object {
+class GoogleAnalytics extends \li3_analytics\extensions\adapter\Tracker {
+	
 	/**
 	 * Google Analytics account
 	 *
