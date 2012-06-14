@@ -4,7 +4,21 @@ namespace li3_analytics\extensions\adapter;
 
 abstract class Tracker extends \lithium\core\Object {
 	
+	protected $_name;
+
 	abstract protected function key();
+
+	public function __construct($config){
+
+		parent::__construct($config);
+
+		$this->name($config['name']);
+
+	}
+
+	public function _init(){
+		parent::_init();
+	}
 
 	public function shells(){
 		return isset($this->_shells) ? $this->_shells : false;
@@ -32,6 +46,13 @@ abstract class Tracker extends \lithium\core\Object {
 		
 		if($uri !== null) $this->_uri = $uri;
 		return $this->_uri;
+
+	}
+
+	public function name($name = null){
+		
+		if($name !== null) $this->_name = $name;
+		return $this->_name;
 
 	}
 

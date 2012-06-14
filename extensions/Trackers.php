@@ -50,11 +50,14 @@ class Trackers extends \lithium\core\Adaptable {
 
 		$session = static::$_classes['session'];
 
+		$name = strtolower(Inflector::slug($name));
+
 		$defaults = array(
-			'adapter'     => ''
+			'adapter'     => '',
+			'name' => $name
 		);
 
-		return static::$_configurations[strtolower(Inflector::slug($name))] = $config + $defaults;
+		return static::$_configurations[$name] = $config + $defaults;
 	}
 
 	/**
@@ -71,12 +74,12 @@ class Trackers extends \lithium\core\Adaptable {
 				$section = $tracker->section();
 				$shells = $tracker->shells();
 
-				static::$_sections[$section][$name] = $tracker;
+				static::$_sections[$section][$tracker->name()] = $tracker;
 
 				if($shells){
 					foreach($shells as $index => $tracker){
-						$section = $section = $tracker->section();
-						static::$_sections[$section]["{$name}_shell_{$index}"] = $tracker;
+						$section = $tracker->section();
+						static::$_sections[$section][$tracker->name()] = $tracker;
 					}
 				}
 

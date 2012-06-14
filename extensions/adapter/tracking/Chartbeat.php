@@ -27,13 +27,10 @@ class Chartbeat extends \li3_analytics\extensions\adapter\Tracker {
 		parent::__construct($config);
 
 		$this->_shells[] = new Shell(array(
+			'name' => 'chartbeat-init',
 			'section' => "prepend_head",
 			'element' => "chartbeat-init",
-			// 'uri'	=> "//cdn.optimizely.com/js/",
-			// 'script' => "test.js",
-			'config' => array(
-				'stuffs' => 'yayz'
-			)
+			'config' => array()
 		));
 
 	}

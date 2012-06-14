@@ -13,6 +13,7 @@ class Analytics extends \lithium\template\Helper {
 	protected $_locations = array();
 	protected $_view;
 	protected $_sections;
+	protected $_trackers = array();
 
 	public function _init(){
 		$this->_sections = Trackers::get();
@@ -35,14 +36,14 @@ class Analytics extends \lithium\template\Helper {
 				if(!empty($this->_sections["{$position}_{$method}"]) && $section = $this->_sections["{$position}_{$method}"]){
 
 					foreach($section as $tracker){
-						// print_r($tracker);
 						echo "\n{$this->_track($tracker)}\n";
+						$this->_trackers[$tracker->name()][] = "{$position}_{$method}";
 					}
-					// die();
+
 				}
 
 			}
-
+			
 			return;
 
 		}
@@ -104,6 +105,7 @@ class Analytics extends \lithium\template\Helper {
 	 * @return object
 	 */
 	protected function renderView() {
+
 		if (!isset($this->_view)) {
 			$this->_view = new View(array(
 				'paths' => array(
@@ -112,7 +114,9 @@ class Analytics extends \lithium\template\Helper {
 				'outputFilters' => Message::aliases(),
 			));
 		}
+
 		return $this->_view;
+
 	}
 
 }
