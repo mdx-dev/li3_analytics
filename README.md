@@ -2,7 +2,7 @@
 
 A plugin to assist with the assignment of Analytical services, AB tests and click tracking.
 
-> Currently supports [Google Analytics](http://www.google.com/analytics/), [Optimizely](http://www.optimizely.com), and [Webtrends Analytics 9](http://webtrends.com/products/analytics)
+> Currently supports [Google Analytics](http://www.google.com/analytics/), [Optimizely](http://www.optimizely.com), [Webtrends Analytics 9](http://webtrends.com/products/analytics), and [Chartbeat](http://chartbeat.com)
 
 ## Installation
 
@@ -66,32 +66,54 @@ Add this file into your `config/boostrap.php` file
 
 Modify the trackers to meet your needs:
 
+__Here's an example for each tracker__
+
 ~~~ php
 	<?php
 
 		use li3_analytics\extensions\Trackers;
 
 		Trackers::add('Google', array( // name it what you'd like
-			'adapter' => 'GoogleAnalytics', // The google adapter
-			'account' => 'UA-999999-1', // your GA account
-			// 'section' => 'append_head', // What helper section to load tracking in your template `append_head | prepend_head`
-			// 'domain' => 'dev.com', // set if you are using with multiple sub domains, ignore otherwise
-			// 'manyTopLevel' => true, // set if you are using GA with multiple top level domains
+			'adapter' => 'GoogleAnalytics', 	// The Adapter
+			'account' => 'UA-999999-1', 		// your GA account
+			// 'section' => 'append_head', 		// What helper section to load tracking in your template `append_head | prepend_head`
+			// 'domain' => 'dev.com', 			// set if you are using with multiple sub domains, ignore otherwise
+			// 'manyTopLevel' => true, 			// set if you are using GA with multiple top level domains
 		));
 				
 		Trackers::add('Optimizely', array(
-			'adapter' => 'Optimizely', // The optimizely adapter
-			'project' => 'xxx123' // the optimizely project id
-			// 'section' => 'prepend_head', // What helper section to load tracking in your template `append_head | prepend_head`
+			'adapter' => 'Optimizely', 			// The Adapter
+			'project' => 'xxx123' 				// the optimizely project id
+			// 'section' => 'prepend_head', 	// What helper section to load tracking in your template `append_head | prepend_head`
 		));
 
 		Trackers::add('Webtrends', array(
-			'adapter'	=> 'Webtrends',
-			'DCSID' 	=> 'dcsXXXXXXXXXXXXXXXXXXXXX_XXXX',
-			'domain' 	=> 'www.test.com',
-			// 'version'	=> '9.4.0', // Analytics 9 by default
-			// 'script'		=> '/js/webtrends.js', // location of webtrends script (relative to webroot)
-			// 'section' 	=> 'append_body' // Section to build script block into
+			'adapter'	=> 'Webtrends', 			// The Adapter
+			'DCSID' 	=> 'dcsXXXXXXXXXXXX_XXXX',	// Webtrends ID
+			'domain' 	=> $_SERVER['SERVER_NAME'],	// Domain 
+			// 'version'	=> '9.4.0', 			// Analytics 9 by default
+			// 'script'		=> '/js/webtrends.js', 	// location of webtrends script (relative to webroot)
+			// 'section' 	=> 'append_body' 		// Section to build script block into
+		));
+
+		Trackers::add('Chartbeat', array(
+			'adapter'	=> 'Chartbeat', 			// The Adapter
+			'uid'		=> 3479, 					// Your account user ID
+			'domain'	=> $_SERVER['SERVER_NAME'], // website domain
+
+			/**
+			 * Chartbeat Configuration Variables
+			 * Links to info provided 
+			 */ 
+				
+			// 'config' 	=> array(
+			// 	'path' => '/some/path', 		// @link: http://chartbeat.com/docs/configuration_variables#path
+			// 	'title' => 'Krusty is back', 	// @link: http://chartbeat.com/docs/configuration_variables#title
+			// 	'useCanonical' => true, 		// @link: http://chartbeat.com/docs/configuration_variables#useCanonical
+			// 	'sections' => "US Politics", 	// @link: http://chartbeat.com/docs/configuration_variables#groups
+			// 	'authors' => "Bob Johnson", 	// @link: http://chartbeat.com/docs/configuration_variables#groups
+			// 	'noCookies' => true 			// @link: http://chartbeat.com/docs/configuration_variables#nocookies
+			// )
 		));
 
 	?>
@@ -155,7 +177,6 @@ Here is a list of trackers I would like to add support for.
 - [ComScore](http://direct.comscore.com/)
 - [Quantcast](http://www.quantcast.com/)
 - [Webtrends Analytics 10](http://webtrends.com/products/analytics/)
-- [Chartbeat](http://chartbeat.com/)
 
 ## Contribute
 Have an idea for a tracker? Wanna take point on one of the trackers listed above? __Please do!__

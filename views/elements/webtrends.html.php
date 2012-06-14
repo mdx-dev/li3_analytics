@@ -18,6 +18,6 @@
 </script>
 
 <noscript>
-	<div><img alt="DCSIMG" id="DCSIMG" width="1" height="1" src="//statse.webtrendslive.com/<?php echo $tracking->DCSID(); ?>/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;DCS.dcscfg=1&amp;WT.tv=<?php echo $tracking->version(); ?>&amp;dcssip=<?php echo $tracking->domain(); ?>"/></div>
+	<div><img alt="DCSIMG" id="DCSIMG" width="1" height="1" src="<?php echo $tracking->uri(); ?><?php echo $tracking->key(); ?>/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;DCS.dcscfg=1&amp;WT.tv=<?php echo $tracking->version(); ?>&amp;dcssip=<?php echo $tracking->domain(); ?>"/></div>
 </noscript>
 <!-- END OF SmartSource Data Collector TAG -->

@@ -38,6 +38,8 @@ class Webtrends extends \li3_analytics\extensions\adapter\Tracker {
 	 */
 	protected $_type = "block";
 
+	protected $_uri = "//statse.webtrendslive.com/";
+
 	/**
 	 * Location of the script
 	 * relative to webroot
@@ -46,7 +48,7 @@ class Webtrends extends \li3_analytics\extensions\adapter\Tracker {
 	 */
 	protected $_script = '/js/webtrends.js';
 
-	protected $_autoConfig = array('DCSID', 'domain', 'version', 'section', 'script');
+	protected $_autoConfig = array('DCSID', 'domain', 'version', 'section', 'uri', 'script');
 
 	/**
 	 * Tracking account used
