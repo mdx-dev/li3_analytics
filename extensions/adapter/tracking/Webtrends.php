@@ -49,14 +49,6 @@ class Webtrends extends \li3_analytics\extensions\adapter\Tracker {
 	protected $_autoConfig = array('DCSID', 'domain', 'version', 'section', 'script');
 
 	/**
-	 * Return the trackers section
-	 * @return string
-	 */
-	public function section(){
-		return $this->_section;
-	}
-
-	/**
 	 * Tracking account used
 	 *
 	 * @return string tracking account
@@ -79,14 +71,6 @@ class Webtrends extends \li3_analytics\extensions\adapter\Tracker {
 	 */
 	public function domain(){
 		return $this->_domain;
-	}
-
-	/**
-	 * returns type var, set by config.
-	 * @return string
-	 */
-	public function type(){
-		return $this->_type;
 	}
 
 	/**

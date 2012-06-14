@@ -31,14 +31,6 @@ class Optimizely extends \li3_analytics\extensions\adapter\Tracker {
 	protected $_type = "inline";
 
 	/**
-	 * Return the trackers section
-	 * @return string
-	 */
-	public function section(){
-		return $this->_section;
-	}
-
-	/**
 	 * Optimizely project code
 	 *
 	 * @return string
@@ -53,14 +45,6 @@ class Optimizely extends \li3_analytics\extensions\adapter\Tracker {
 	 */
 	public function key(){
 		return $this->project();
-	}
-
-	public function type(){
-		return $this->_type;
-	}
-
-	public function uri(){
-		return $this->_uri;
 	}
 
 }

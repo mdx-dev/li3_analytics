@@ -1,7 +1,10 @@
 <?php
 
 namespace li3_analytics\extensions\adapter\tracking;
+
 use \li3_analytics\extensions\Trackers;
+use \li3_analytics\extensions\adapter\tracking\Shell;
+
 
 class Chartbeat extends \li3_analytics\extensions\adapter\Tracker {
 
@@ -9,13 +12,9 @@ class Chartbeat extends \li3_analytics\extensions\adapter\Tracker {
 
 	protected $_config = array();
 
-	/**
-	 * Tracker Location
-	 * Array means there are child tracker elements
-	 * Primary location should be the first.
-	 * @var mixed
-	 */
-	protected $_section = array("append_body", "prepend_head");
+	protected $_section = "append_body";
+
+	protected $_shells = array();
 
 	protected $_uid;
 
@@ -23,24 +22,24 @@ class Chartbeat extends \li3_analytics\extensions\adapter\Tracker {
 
 	protected $_autoConfig = array('type', 'uid', 'domain', 'config' => 'merge', 'section');
 
+	public function __construct($config){
+
+		parent::__construct($config);
+
+		$this->_shells[] = new Shell(array(
+			'section' => "prepend_head",
+			'element' => "chartbeat-init",
+			// 'uri'	=> "//cdn.optimizely.com/js/",
+			// 'script' => "test.js",
+			'config' => array(
+				'stuffs' => 'yayz'
+			)
+		));
+
+	}
+
 	public function key(){
 		return $this->_uid;
-	}
-
-	public function section(){
-		return $this->_section[0];
-	}
-
-	public function sections(){
-
-		unset($this->_section[0]);
-
-		return $this->_section;
-		
-	}
-
-	public function type(){
-		return $this->_type;
 	}
 
 	public function config(){

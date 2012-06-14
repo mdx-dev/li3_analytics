@@ -1,0 +1,76 @@
+<?php
+
+/**
+ * Shell Tracking class
+ * ----------------------------------------------------------
+ * Used for those trackers that have split contents
+ * Builds out the secondary trackers and their placeholders.
+ */
+
+namespace li3_analytics\extensions\adapter\tracking;
+
+class Shell extends \li3_analytics\extensions\adapter\Tracker {
+
+	/**
+	 * Type of tracking element
+	 * `block`, `inline`
+	 * @var string
+	 */
+	protected $_type = "block";
+
+	/**
+	 * name of element to load
+	 * used for `block` tracking
+	 * @var [type]
+	 */
+	protected $_element = null;
+
+	/**
+	 * URI to script
+	 * @var string
+	 */
+	protected $_uri = null;
+
+	/**
+	 * Name of javascript file
+	 * @var string
+	 */
+	protected $_script = null;
+
+	/**
+	 * Tracker Location
+	 * Array means there are child tracker elements
+	 * Primary location should be the first.
+	 * @var mixed
+	 */
+	protected $_section = "append_body";
+
+	/**
+	 * Configuration options for tracker
+	 * @var array
+	 */
+	protected $_config = array();
+
+	protected $_autoConfig = array('element', 'uri', 'script', 'section', 'config');
+
+	public function __construct($config){
+		if(isset($config['uri']) AND isset($config['script'])) $this->_type = 'inline';
+		parent::__construct($config);
+	}
+
+	public function element(){
+		return $this->_element;
+	}
+
+	public function key(){
+
+		return $this->_script;
+
+	}
+
+	public function config($config = null){
+		if($config !== null) $this->_config = $config;
+		return $this->_config;
+	}
+
+}

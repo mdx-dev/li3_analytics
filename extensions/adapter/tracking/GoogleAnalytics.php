@@ -49,14 +49,6 @@ class GoogleAnalytics extends \li3_analytics\extensions\adapter\Tracker {
 	protected $_autoConfig = array('account', 'commands', 'domain', 'manyTopLevel', 'section');
 
 	/**
-	 * Return the trackers section
-	 * @return string
-	 */
-	public function section(){
-		return $this->_section;
-	}
-
-	/**
 	 * Tracking account used
 	 *
 	 * @return string tracking account
@@ -75,10 +67,6 @@ class GoogleAnalytics extends \li3_analytics\extensions\adapter\Tracker {
 
 	public function domain(){
 		return $this->_domain;
-	}
-
-	public function type(){
-		return $this->_type;
 	}
 
 	/**

@@ -64,13 +64,21 @@ class Trackers extends \lithium\core\Adaptable {
 
 		if($name === null){
 
-			foreach(static::$_configurations as $tracker => $config){
+			foreach(static::$_configurations as $name => $config){
 
-				$section = static::adapter($tracker)->section();
-				// $sections = static::adapter($tracker)->sections();
-				// unset($sections[0]);
+				$tracker = static::adapter($name);
 
-				static::$_sections[$section][$tracker] = static::adapter($tracker);
+				$section = $tracker->section();
+				$shells = $tracker->shells();
+
+				static::$_sections[$section][$name] = $tracker;
+
+				if($shells){
+					foreach($shells as $index => $tracker){
+						$section = $section = $tracker->section();
+						static::$_sections[$section]["{$name}_shell_{$index}"] = $tracker;
+					}
+				}
 
 			}
 

@@ -35,9 +35,10 @@ class Analytics extends \lithium\template\Helper {
 				if(!empty($this->_sections["{$position}_{$method}"]) && $section = $this->_sections["{$position}_{$method}"]){
 
 					foreach($section as $tracker){
+						// print_r($tracker);
 						echo "\n{$this->_track($tracker)}\n";
 					}
-
+					// die();
 				}
 
 			}
@@ -75,12 +76,16 @@ class Analytics extends \lithium\template\Helper {
 
 		if($tracking->type() == 'inline'){
 
+			if($adapter == 'Shell') $template = $tracking->element();
+
 			return $this->_context->html->script("{$tracking->uri()}{$tracking->key()}") . "\n\t";
 
 		}
 
 		if($tracking->type() == 'block'){
 
+			if($adapter == 'Shell') $template = $tracking->element();
+			
 			// initialize the template object
 			$view = $this->renderView();
 
