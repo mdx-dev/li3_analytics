@@ -14,8 +14,9 @@ window.webtrendsAsyncInit=function(){
         javascript: true,
         onsitedoms:"vitals.com",
         fpcdom:".{2},vitals.com",
-        }).track();
-	dcs.DCSext.version = 'hb'
+        });
+        dcs.DCSext.version = 'hb';
+        dcs.track();
 };
 (function(){
     var s=document.createElement("script"); s.async=true; s.src="<?php echo $tracking->script() ?>";
