@@ -12,7 +12,7 @@ abstract class Tracker extends \lithium\core\Object {
 
 		parent::__construct($config);
 
-		$this->name($config['name']);
+		$this->name($config['adapter']);
 
 	}
 
