@@ -12,7 +12,6 @@ class Webtrends extends \li3_analytics\extensions\adapter\Tracker {
 
 	/**
 	 * Analytics version to use
-	 * currently only supports 9
 	 * @var string
 	 */
 	protected $_version = '10.2.29';
@@ -48,7 +47,7 @@ class Webtrends extends \li3_analytics\extensions\adapter\Tracker {
 	 */
 	protected $_script = '/js/webtrends.js';
 
-	protected $_autoConfig = array('DCSID', 'domain', 'version', 'section', 'uri', 'script');
+	protected $_autoConfig = array('DCSID', 'domain', 'version', 'section', 'uri', 'script', 'configuration', 'custom');
 
 	/**
 	 * Tracking account used
@@ -89,6 +88,14 @@ class Webtrends extends \li3_analytics\extensions\adapter\Tracker {
 	 */
 	public function version(){
 		return $this->_version;
+	}
+
+	public function configuration(){
+		return !empty($this->_configuration) ? $this->_configuration : false;
+	}
+
+	public function custom(){
+		return !empty($this->_custom) ? $this->_custom : false;
 	}
 
 }
