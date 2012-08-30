@@ -37,7 +37,7 @@ class Webtrends extends \li3_analytics\extensions\adapter\Tracker {
 	 */
 	protected $_type = "block";
 
-	protected $_uri = "//statse.webtrendslive.com/";
+	protected $_uri = "statse.webtrendslive.com";
 
 	/**
 	 * Location of the script
