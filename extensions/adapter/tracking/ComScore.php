@@ -29,9 +29,15 @@ class ComScore extends \li3_analytics\extensions\adapter\Tracker {
 		 * @var string
 		 */
 		protected $_type = "block";
+		
+		/**
+	    * Include the noscript section -- defaults to true
+	    * @var bool
+	    */
+	    protected $_noscript = true;
 
 
-		protected $_autoConfig = array('account', 'section');
+		protected $_autoConfig = array('account', 'section', 'noscript');
 
 		/**
 		 * Tracking account used
@@ -49,4 +55,11 @@ class ComScore extends \li3_analytics\extensions\adapter\Tracker {
 		public function key(){
 			return $this->account();
 		}
+		
+		/**
+		 * Include the noscript section
+		 */
+		public function noscript(){
+		    return $this->_noscript;
+	    }
 	}
