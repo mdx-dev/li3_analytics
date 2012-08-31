@@ -104,8 +104,11 @@ class Webtrends extends \li3_analytics\extensions\adapter\Tracker {
 		return !empty($this->_custom) ? $this->_custom : false;
 	}
 
+	/**
+	 * Include the noscript section
+	 */
 	public function noscript(){
-		return $this->_noscript;
+	    return $this->_noscript;
 	}
 
 }
