@@ -47,7 +47,7 @@ window.webtrendsAsyncInit=function(){
 			// loop thru extra configuration
 			foreach($tracking->configuration() as $key => $value) {
 				echo "{$key}: ";
-				echo (gettype($value) == "string") ? "\"{$value}\"" : $value;
+				echo (gettype($value) == "string") ? "\"{$value}\"" : (gettype($value) == "boolean" ? ($value === true ? 'true' : 'fase') : $value);
 				echo ",\r\t\t";
 			}
 		}
@@ -56,7 +56,7 @@ window.webtrendsAsyncInit=function(){
 		if($tracking->custom()){
 			foreach($tracking->custom() as $key => $value) {
 				echo "\t\tdcs.DCSext.{$key} = ";
-				echo (gettype($value) == "string") ? "\"{$value}\"" : $value;
+				echo (gettype($value) == "string") ? "\"{$value}\"" : (gettype($value) == "boolean" ? ($value === true ? 'true' : 'fase') : $value);
 				echo ";\r";
 			}
 		}
@@ -68,7 +68,7 @@ window.webtrendsAsyncInit=function(){
 	var s2=document.getElementsByTagName("script")[0]; s2.parentNode.insertBefore(s,s2);
 }());
 </script>
-<noscript><img alt="dcsimg" id="dcsimg" width="1" height="1" src="<?php echo $tracking->uri(); ?><?php echo $tracking->key(); ?>/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=<?php echo $tracking->version(); ?>&amp;dcssip=www.{2},vitals.com&amp;DCSext.version=hb"/></noscript>
-<!-- END OF SmartSource Data Collector TAG v10.2.29 -->
+<noscript><img alt="dcsimg" id="dcsimg" width="1" height="1" src="//<?php echo $tracking->uri(); ?><?php echo $tracking->key(); ?>/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=<?php echo $tracking->version(); ?>&amp;dcssip=<?php echo $tracking->domain() ?>&amp;DCSext.version=hb"/></noscript>
+<!-- END OF SmartSource Data Collector TAG -->
 
 <?php } ?>
