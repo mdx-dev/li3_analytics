@@ -2,7 +2,7 @@
 
 A plugin to assist with the assignment of Analytical services, AB tests and click tracking.
 
-> Currently supports [Google Analytics](http://www.google.com/analytics/), [Optimizely](http://www.optimizely.com), [Webtrends Analytics 9](http://webtrends.com/products/analytics), and [Chartbeat](http://chartbeat.com)
+> Currently supports [Google Analytics](http://www.google.com/analytics/), [Optimizely](http://www.optimizely.com), [Webtrends Analytics 9 & 10](http://webtrends.com/products/analytics), [Chartbeat](http://chartbeat.com), and [comScore Direct](http://direct.comscore.com)
 
 ## Installation
 
@@ -115,6 +115,10 @@ __Here's an example for each tracker__
 			// 	'noCookies' => true 			// @link: http://chartbeat.com/docs/configuration_variables#nocookies
 			// )
 		));
+		Trackers::add('comScore', array(
+			'adapter'	=> 'ComScore', 			// The Adapter
+			'account' 	=> '123456789'	// comScore Account ID
+		));
 
 	?>
 ~~~
@@ -174,9 +178,7 @@ That's it! the proper code for your tracker should now be rendered into your tem
 Here is a list of trackers I would like to add support for.
 
 - [Clicky](http://getclicky.com/)
-- [ComScore](http://direct.comscore.com/)
 - [Quantcast](http://www.quantcast.com/)
-- [Webtrends Analytics 10](http://webtrends.com/products/analytics/)
 
 ## Contribute
 Have an idea for a tracker? Wanna take point on one of the trackers listed above? __Please do!__
