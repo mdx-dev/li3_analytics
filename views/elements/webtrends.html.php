@@ -23,10 +23,11 @@
 	_tag.dcsCollect();
 	//]]>
 </script>
-
+<?php if ($tracking->noscript()) { ?>
 <noscript>
 	<div><img alt="DCSIMG" id="DCSIMG" width="1" height="1" src="<?php echo $tracking->uri(); ?><?php echo $tracking->key(); ?>/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;DCS.dcscfg=1&amp;WT.tv=<?php echo $tracking->version(); ?>&amp;dcssip=<?php echo $tracking->domain(); ?>"/></div>
 </noscript>
+<?php } ?>
 <!-- END OF SmartSource Data Collector TAG -->
 
 <?php } 
@@ -68,7 +69,10 @@ window.webtrendsAsyncInit=function(){
 	var s2=document.getElementsByTagName("script")[0]; s2.parentNode.insertBefore(s,s2);
 }());
 </script>
+<?php if ($tracking->noscript()) { ?>
 <noscript><img alt="dcsimg" id="dcsimg" width="1" height="1" src="//<?php echo $tracking->uri(); ?><?php echo $tracking->key(); ?>/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=<?php echo $tracking->version(); ?>&amp;dcssip=<?php echo $tracking->domain() ?>&amp;DCSext.version=hb"/></noscript>
-<!-- END OF SmartSource Data Collector TAG -->
+<?php } ?>
+<!-- END OF SmartSource Data Collector TAG v10.2.29 -->
 
 <?php } ?>
+
