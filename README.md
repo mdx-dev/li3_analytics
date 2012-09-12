@@ -14,7 +14,7 @@ Modify your projects `composer.json` file
 {
     "require": {
     	...
-        "joseym/li3_analytics": "master"
+        "mdx-dev/li3_analytics": "master"
         ...
     }
 }
@@ -26,13 +26,13 @@ Run `php composer.phar install` (or `php composer.phar update`) and, aside from 
 
 __Submodule__ (If you feel like it)
 
-From the root of your app run `git submodule add git://github.com/joseym/li3_analytics.git libraries/li3_analytics`
+From the root of your app run `git submodule add git://github.com/mdx-dev/li3_analytics.git libraries/li3_analytics`
 
 ***
 
 __Clone Directly__ (meh)
 
-From your apps `libraries` directory run `git clone git://github.com/joseym/li3_analytics.git`
+From your apps `libraries` directory run `git clone git://github.com/mdx-dev/li3_analytics.git`
 
 ## Usage
 
