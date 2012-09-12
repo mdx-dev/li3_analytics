@@ -19,13 +19,6 @@ class Shell extends \li3_analytics\extensions\adapter\Tracker {
 	protected $_type = "block";
 
 	/**
-	 * name of element to load
-	 * used for `block` tracking
-	 * @var [type]
-	 */
-	protected $_element = null;
-
-	/**
 	 * URI to script
 	 * @var string
 	 */
@@ -64,10 +57,6 @@ class Shell extends \li3_analytics\extensions\adapter\Tracker {
 
 		if(isset($config['uri']) AND isset($config['script'])) $this->_type = 'inline';
 		parent::__construct($config);
-	}
-
-	public function element(){
-		return $this->_element;
 	}
 
 	public function key(){
