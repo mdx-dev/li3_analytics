@@ -56,7 +56,7 @@ class Shell extends \li3_analytics\extensions\adapter\Tracker {
 	public function __construct($config){
 
 		// Backwards compatibility
-		if(is_string($config['section'])) {
+		if(isset($config['section'])) {
 			$this->_views = array(
 				$config['section'] => $config['element']
 			);
