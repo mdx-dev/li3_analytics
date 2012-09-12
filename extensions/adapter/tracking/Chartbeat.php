@@ -12,28 +12,16 @@ class Chartbeat extends \li3_analytics\extensions\adapter\Tracker {
 
 	protected $_config = array();
 
-	protected $_section = "append_body";
-
-	protected $_shells = array();
+	protected $_views = array(
+		'append_body' => 'chartbeat',
+		'prepend_head' => 'chartbeat-init'
+	);
 
 	protected $_uid;
 
 	protected $_domain;
 
 	protected $_autoConfig = array('type', 'uid', 'domain', 'config' => 'merge', 'section');
-
-	public function __construct($config){
-
-		parent::__construct($config);
-
-		$this->_shells[] = new Shell(array(
-			'adapter' => 'chartbeat-init',
-			'section' => "prepend_head",
-			'element' => "chartbeat-init",
-			'config' => array()
-		));
-
-	}
 
 	public function key(){
 		return $this->_uid;
