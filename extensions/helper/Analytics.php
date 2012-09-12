@@ -51,9 +51,19 @@ class Analytics extends \lithium\template\Helper {
 		// Build specific tracker
 		$tracker = Trackers::get($method);
 
+		// Get view
+		if(isset($options[0])) {
+			$view = $options[0];
+		} else {
+			// Use first view
+			$views = $tracker->views();
+			$keys = array_keys($views);
+			$view = $views[$keys[0]];
+		}
+
 		if(!empty($tracker)){
 
-			return $this->_track($tracker);
+			return $this->_track($tracker, $view);
 
 		}
 
