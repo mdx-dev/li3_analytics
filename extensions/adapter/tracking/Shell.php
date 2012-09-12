@@ -38,12 +38,12 @@ class Shell extends \li3_analytics\extensions\adapter\Tracker {
 	protected $_script = null;
 
 	/**
-	 * Tracker Location
+	 * Tracker Locations
 	 * Array means there are child tracker elements
 	 * Primary location should be the first.
-	 * @var mixed
+	 * @var array
 	 */
-	protected $_section = "append_body";
+	protected $_views = array();
 
 	/**
 	 * Configuration options for tracker
