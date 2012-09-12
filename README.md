@@ -154,8 +154,15 @@ Remember that name you gave your tracker in `Trackers::add()`, well you can manu
 Here's how:
 
 ~~~ php
-<?php echo $this->analytics->google(); ?>
+<?php echo $this->analytics->google('position'); ?>
 ~~~
+
+Replace 'position' with any of the four view types listed below or none for the first view.
+
+* append_body
+* prepend_body
+* append_head
+* prepend_head
 
 Wait, what? That's it?! 
 
