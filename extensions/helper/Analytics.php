@@ -36,8 +36,8 @@ class Analytics extends \lithium\template\Helper {
 				if(!empty($this->_sections["{$position}_{$method}"]) && $section = $this->_sections["{$position}_{$method}"]){
 
 					foreach($section as $tracker){
-						echo "\n{$this->_track($tracker)}\n";
-						$this->_trackers[$tracker->name()][] = "{$position}_{$method}";
+						echo "\n{$this->_track($tracker['tracker'], $tracker['view'])}\n";
+						$this->_trackers[$tracker['tracker']->name()][] = "{$position}_{$method}";
 					}
 
 				}
@@ -64,14 +64,12 @@ class Analytics extends \lithium\template\Helper {
 	 * @param  object $tracker Tracker adapter
 	 * @return [type]          [description]
 	 */
-	protected function _track($tracking){
+	protected function _track($tracking, $template){
 
 		// Tracking object
 		$class = get_class($tracking);
 		// Adapter Name
 		$adapter = mb_substr($class, mb_strrpos($class, '\\')+1);
-		// Element Template Name
-		$template = mb_strtolower($adapter);
 
 		$library = 'li3_analytics';
 
