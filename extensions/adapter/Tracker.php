@@ -6,6 +6,8 @@ abstract class Tracker extends \lithium\core\Object {
 	
 	protected $_name;
 
+	protected $_views = array();
+
 	abstract protected function key();
 
 	public function __construct($config){
