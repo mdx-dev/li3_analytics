@@ -12,9 +12,11 @@ class Quantcast extends \li3_analytics\extensions\adapter\Tracker {
 
 	/**
 	 * What section of the page should the script be loaded?
-	 * @var string
+	 * @var array
 	 */
-	protected $_section = "append_body";
+	protected $_views = array(
+		'append_body' => 'quantcast'
+	);
 
 	/**
 	 * Include the noscript section -- defaults to true
