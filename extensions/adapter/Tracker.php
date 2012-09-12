@@ -31,15 +31,6 @@ abstract class Tracker extends \lithium\core\Object {
 	}
 
 	/**
-	 * Return the trackers section
-	 * @return string
-	 */
-	public function section($section = null){
-		if($section !== null) $this->_section = $section;
-		return $this->_section;
-	}
-
-	/**
 	 * returns type var, set by config.
 	 * @return string
 	 */
