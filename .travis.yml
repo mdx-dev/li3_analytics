@@ -1,0 +1,15 @@
+language: php
+
+php:
+  - 5.3
+  - 5.4
+
+before_install:
+  - git clone git://github.com/UnionOfRAD/framework.git ./
+  - git submodule update --init --recursive
+  - cd app/libraries/
+
+before_script:
+  - cd li3_analytics
+
+script: ../../../libraries/lithium/console/li3 test ./tests
