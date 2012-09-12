@@ -22,8 +22,12 @@ abstract class Tracker extends \lithium\core\Object {
 		parent::_init();
 	}
 
-	public function shells(){
-		return isset($this->_shells) ? $this->_shells : false;
+	/**
+	 * Return the tracker views
+	 * @return array
+	 */
+	public function views() {
+		return $this->_views;
 	}
 
 	/**
