@@ -44,7 +44,7 @@ class Shell extends \li3_analytics\extensions\adapter\Tracker {
 	 */
 	protected $_config = array();
 
-	protected $_autoConfig = array('element', 'uri', 'script', 'section', 'config');
+	protected $_autoConfig = array('element', 'uri', 'script', 'views', 'config');
 
 	public function __construct($config){
 
