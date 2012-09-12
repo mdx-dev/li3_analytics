@@ -54,6 +54,14 @@ class Shell extends \li3_analytics\extensions\adapter\Tracker {
 	protected $_autoConfig = array('element', 'uri', 'script', 'section', 'config');
 
 	public function __construct($config){
+
+		// Backwards compatibility
+		if(is_string($config['section'])) {
+			$this->_views = array(
+				$config['section'] => $config['element']
+			);
+		}
+
 		if(isset($config['uri']) AND isset($config['script'])) $this->_type = 'inline';
 		parent::__construct($config);
 	}
