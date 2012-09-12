@@ -3,7 +3,6 @@
 namespace li3_analytics\extensions\adapter\tracking;
 
 use \li3_analytics\extensions\Trackers;
-use \li3_analytics\extensions\adapter\tracking\Shell;
 
 
 class Chartbeat extends \li3_analytics\extensions\adapter\Tracker {
