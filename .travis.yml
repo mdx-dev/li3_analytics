@@ -5,11 +5,11 @@ php:
   - 5.4
 
 before_install:
-  - git clone git://github.com/UnionOfRAD/framework.git ./
+  - cd ../
+  - git clone git://github.com/UnionOfRAD/framework.git
+  - mv li3_analytics/ framework/app/libraries/li3_analytics
+  - cd framework
   - git submodule update --init --recursive
   - cd app/libraries/
-
-before_script:
-  - cd li3_analytics
 
 script: ../../../libraries/lithium/console/li3 test ./tests
