@@ -4,6 +4,8 @@ A plugin to assist with the assignment of Analytical services, AB tests and clic
 
 > Currently supports [Google Analytics](http://www.google.com/analytics/), [Optimizely](http://www.optimizely.com), [Webtrends Analytics 9 & 10](http://webtrends.com/products/analytics), [Chartbeat](http://chartbeat.com), and [comScore Direct](http://direct.comscore.com)
 
+[![Build Status](https://secure.travis-ci.org/mdx-dev/li3_analytics.png?branch=master)](http://travis-ci.org/mdx-dev/li3_analytics)
+
 ## Installation
 
 __Composer__ (best option)
