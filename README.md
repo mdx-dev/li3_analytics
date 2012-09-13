@@ -187,7 +187,6 @@ That's it! the proper code for your tracker should now be rendered into your tem
 Here is a list of trackers I would like to add support for.
 
 - [Clicky](http://getclicky.com/)
-- [Quantcast](http://www.quantcast.com/)
 
 ## Contribute
 Have an idea for a tracker? Wanna take point on one of the trackers listed above? __Please do!__
