@@ -15,10 +15,16 @@ abstract class Tracker extends \lithium\core\Object {
 		parent::__construct($config);
 
 		// Backwards section/element compatibility
-		if(isset($config['section'])) {
-			$this->_views = array(
-				$config['section'] => $config['element']
-			);
+		if(isset($config['section']) && isset($config['element'])) {
+			// Section and element
+			$this->_views[$config['section']] = $config['element'];
+		} elseif(isset($config['section']) && count($this->_views) == 1) {
+			// Section and single view
+			$this->_views[$config['section']] = array_pop($this->_views);
+		} elseif(isset($config['section']) && count($this->_views) == 1) {
+			// Single view and element
+			$keys = array_keys($array);
+			$this->_views[$keys[0]] = $config['element'];
 		}
 
 		// Name
