@@ -14,6 +14,14 @@ abstract class Tracker extends \lithium\core\Object {
 
 		parent::__construct($config);
 
+		// Backwards section/element compatibility
+		if(isset($config['section'])) {
+			$this->_views = array(
+				$config['section'] => $config['element']
+			);
+		}
+
+		// Name
 		$this->name($config['adapter']);
 
 	}
