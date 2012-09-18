@@ -27,7 +27,8 @@ class Webtrends extends \li3_analytics\extensions\adapter\Tracker {
 	 * @var array
 	 */
 	protected $_views = array(
-		'append_head' => 'webtrends'
+		'append_head' => 'webtrends',
+		'prepend_body' => 'webtrends.noscript'
 	);
 
 	/**
