@@ -19,7 +19,7 @@ class ComScore extends \li3_analytics\extensions\adapter\Tracker {
 		 * @var array
 		 */
 		protected $_views = array(
-			'append_head' => 'comScore'
+			'append_head' => 'comscore'
 		);
 
 		/**
