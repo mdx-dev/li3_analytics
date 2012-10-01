@@ -7,6 +7,7 @@ use lithium\template\View;
 use lithium\g11n\Message;
 use lithium\core\Environment;
 use lithium\core\ConfigException;
+use lithium\util\String;
 
 class Analytics extends \lithium\template\Helper {
 
@@ -85,7 +86,9 @@ class Analytics extends \lithium\template\Helper {
 
 		if($tracking->type() == 'inline'){
 
-			return $this->_context->html->script("{$tracking->uri()}{$tracking->key()}") . "\n\t";
+			return $this->_context->html->script(String::insert($tracking->uri(), array(
+				'key' => $tracking->key()
+			))) . "\n\t";
 
 		}
 
