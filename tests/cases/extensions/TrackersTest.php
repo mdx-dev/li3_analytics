@@ -97,4 +97,60 @@ class TrackersTest extends \lithium\test\Unit {
 		$this->assertIdentical($expected, $tracking->commands());
 
 	}
+
+	public function testRetrieveConfig() {
+		Trackers::add('foobar', array(
+			'account' => 'test',
+			'adapter' => 'GoogleAnalytics',
+			'commands' => array(
+				array('_setDomainName', 'example.org'),
+			)
+		));
+
+		$tracking = Trackers::get('foobar');
+
+		$expected = array(
+			'account' => 'test',
+			'adapter' => 'GoogleAnalytics',
+			'commands' => array(
+				array('_setDomainName','example.org'),
+			),
+			'name' => 'foobar',
+			'filters' => array(),
+			'init' => true,
+		);
+
+		$this->assertIdentical($expected, $tracking->config());
+	}
+
+	public function testUpdateConfig() {
+		Trackers::add('foobar', array(
+			'account' => 'test',
+			'adapter' => 'GoogleAnalytics',
+			'commands' => array(
+				array('_setDomainName', 'example.org'),
+			)
+		));
+
+		$tracking = Trackers::get('foobar');
+
+		$tracking->config(array(
+			'commands' => array(
+				array('_setDomainName','example.com'),
+			),
+		));
+
+		$expected = array(
+			'commands' => array(
+				array('_setDomainName','example.com'),
+			),
+			'account' => 'test',
+			'adapter' => 'GoogleAnalytics',
+			'name' => 'foobar',
+			'filters' => array(),
+			'init' => true,
+		);
+
+		$this->assertIdentical($expected, $tracking->config());
+	}
 }

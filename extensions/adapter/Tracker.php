@@ -32,6 +32,16 @@ abstract class Tracker extends \lithium\core\Object {
 
 	}
 
+	/**
+	 * Will return the config with optional $options provided
+	 *
+	 * @param  array  $options The optional new options to merge in
+	 * @return array
+	 */
+	public function config(array $options = array()) {
+		return $this->_config = $options += $this->_config;
+	}
+
 	public function _init(){
 		parent::_init();
 	}
