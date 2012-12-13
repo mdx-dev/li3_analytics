@@ -118,4 +118,28 @@ class GoogleAnalyticsTest extends \lithium\test\Unit
 			'prepend_body' => 'google_3'
 		), $views); // key/value
 	}
+
+	function testUpdateCommands()
+	{
+		$ga = new GoogleAnalytics(array(
+			'adapter' => 'GoogleAnalytics',
+			'account' => 'abc123',
+			'commands' => array(
+				array('_hello'),
+			)
+		));
+
+		$ga->commands(array(
+			array('a', 'b', 'c', 'd'),
+		));
+
+		$expected = array(
+			array('_setAccount', 'abc123'),
+			array('_trackPageview'),
+			array('_hello'),
+			array('a', 'b', 'c', 'd'),
+		);
+
+		$this->assertEqual($expected, $ga->commands());
+	}
 }

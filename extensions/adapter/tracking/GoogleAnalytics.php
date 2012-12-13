@@ -74,9 +74,12 @@ class GoogleAnalytics extends \li3_analytics\extensions\adapter\Tracker {
 	/**
 	 * Builds the commands that have to be run on the tracker
 	 *
-	 * @return array list of commands to run on the tracker
+	 * @param  array $comands The optional commands to merge into the currnet ones
+	 * @return array          list of commands to run on the tracker
 	 */
-	public function commands() {
+	public function commands(array $commands = array()) {
+
+		$this->_commands = array_merge($this->_commands, $commands);
 		
 		$commands = array(
 			array('_setAccount', $this->_account),
