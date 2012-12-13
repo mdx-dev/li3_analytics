@@ -57,8 +57,8 @@ class Shell extends \li3_analytics\extensions\adapter\Tracker {
 
 	}
 
-	public function config($config = null){
-		if($config !== null) $this->_config = $config;
+	public function config(array $options = array()){
+		if(!empty($config)) $this->_config = $config;
 		return $this->_config;
 	}
 
