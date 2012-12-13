@@ -75,4 +75,26 @@ class TrackersTest extends \lithium\test\Unit {
 		$this->assertEqual($expected, $tracking->commands());
 
 	}
+
+	function testWeirdName() {
+
+		Trackers::add('Foo_Bar~baz', array(
+			'account' => 'test',
+			'adapter' => 'GoogleAnalytics',
+			'commands' => array(
+				array('_setDomainName', 'example.org'),
+			)
+		));
+
+		$expected = array(
+			array('_setAccount', 'test'),
+			array('_trackPageview'),
+			array('_setDomainName', 'example.org')
+		);
+
+		$tracking = Trackers::get('Foo_Bar~baz');
+
+		$this->assertIdentical($expected, $tracking->commands());
+
+	}
 }

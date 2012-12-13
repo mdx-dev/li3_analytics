@@ -50,7 +50,7 @@ class Trackers extends \lithium\core\Adaptable {
 
 		$session = static::$_classes['session'];
 
-		$name = strtolower(Inflector::slug($name));
+		$name = self::_normalizeName($name);
 
 		$defaults = array(
 			'adapter'     => '',
@@ -85,6 +85,8 @@ class Trackers extends \lithium\core\Adaptable {
 
 		}
 
+		$name = self::_normalizeName($name);
+
 		if (!isset(static::$_configurations[$name])) {
 			return null;
 		}
@@ -93,6 +95,16 @@ class Trackers extends \lithium\core\Adaptable {
 
 		return static::adapter($name);
 
+	}
+
+	/**
+	 * Standard way of validating/filtering the name
+	 *
+	 * @param  string $name
+	 * @return string
+	 */
+	protected static function _normalizeName($name) {
+		return strtolower(Inflector::slug($name));
 	}
 
 	/**
