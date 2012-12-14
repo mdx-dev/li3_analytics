@@ -7,6 +7,17 @@ namespace li3_analytics\extensions\adapter\tracking;
  * http://code.google.com/intl/en/apis/analytics/docs/gaJS/gaJSApi.html
  */
 class GoogleAnalytics extends \li3_analytics\extensions\adapter\Tracker {
+
+	/**
+	 * The ordering of the given commands. The first
+	 *
+	 * @var array
+	 */
+	protected $_orders = array(
+		'/_setAccount$/' => 0,
+		'/_setCustomVar$/' => 1,
+		'/_trackPageview$/' => 2,
+	);
 	
 	/**
 	 * Google Analytics account
@@ -86,12 +97,41 @@ class GoogleAnalytics extends \li3_analytics\extensions\adapter\Tracker {
 			array('_trackPageview')
 		);
 
-		if($this->_domain !== null) $commands[] = array('_setDomainName', $this->_domain);
-		if($this->_manyTopLevel !== false && is_bool($this->_manyTopLevel)) $commands[] = array('_setAllowLinker', $this->_manyTopLevel);
+		if ($this->_domain !== null) {
+			$commands[] = array('_setDomainName', $this->_domain);
+		}
+		if ($this->_manyTopLevel !== false && is_bool($this->_manyTopLevel)) {
+			$commands[] = array('_setAllowLinker', $this->_manyTopLevel);
+		}
 
 		$commands = array_merge($commands, $this->_commands);
+		$this->_orderCommands($commands);
 
 		return array_map("unserialize", array_unique(array_map("serialize", $commands)));
+	}
 
+	/**
+	 * Some commands in ga need to be ordered in a specific way, this provides a
+	 * simple method to help automate that.
+	 *
+	 * @param  array $commands
+	 * @return bool
+	 */
+	protected function _orderCommands(&$commands) {
+		$orders =& $this->_orders;
+		return usort($commands, function($el1, $el2) use(&$orders) {
+			$elOrders = array(
+				'el1' => 999,
+				'el2' => 999,
+			);
+			foreach ($orders as $regex => $order) {
+				foreach ($elOrders as $key => $elOrder) {
+					if (preg_match($regex, ${$key}[0]) === 1) {
+						$elOrders[$key] = $order;
+					}
+				}
+			}
+			return strcmp($elOrders['el1'], $elOrders['el2']);
+		});
 	}
 }
