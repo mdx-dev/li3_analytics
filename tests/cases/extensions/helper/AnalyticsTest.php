@@ -5,7 +5,7 @@ namespace li3_analytics\tests\cases\extensions\helper;
 use lithium\net\http\Router;
 use lithium\action\Request;
 use lithium\action\Response;
-use lithium\tests\mocks\template\helper\MockHtmlRenderer;
+use li3_analytics\tests\mocks\template\helper\MockHtmlRenderer;
 use li3_analytics\extensions\helper\Analytics;
 use li3_analytics\extensions\Trackers;
 

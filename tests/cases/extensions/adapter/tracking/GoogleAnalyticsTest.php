@@ -43,8 +43,8 @@ class GoogleAnalyticsTest extends \lithium\test\Unit
 		$expected = array(
 			array('_setAccount', 'abc123'),
 			array('_trackPageview'),
-			array('_hello'),
 			array('a', 'b', 'c', 'd'),
+			array('_hello'),
 		);
 
 		$this->assertEqual($expected, $ga->commands());
@@ -136,10 +136,30 @@ class GoogleAnalyticsTest extends \lithium\test\Unit
 		$expected = array(
 			array('_setAccount', 'abc123'),
 			array('_trackPageview'),
-			array('_hello'),
 			array('a', 'b', 'c', 'd'),
+			array('_hello'),
+		);
+
+		$this->assertEqual($expected, $ga->commands());
+	}
+
+	function testOrdering() {
+		$ga = new GoogleAnalytics(array(
+			'adapter' => 'GoogleAnalytics',
+			'account' => 'abc123',
+			'commands' => array(
+				array('_setCustomVar', 'account', 'loggedin'),
+			)
+		));
+
+		$expected = array(
+			array('_setAccount', 'abc123'),
+			array('_setCustomVar', 'account', 'loggedin'),
+			array('_trackPageview'),
 		);
 
 		$this->assertEqual($expected, $ga->commands());
 	}
 }
+
+?>
