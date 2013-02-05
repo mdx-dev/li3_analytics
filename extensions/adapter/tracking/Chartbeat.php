@@ -26,7 +26,7 @@ class Chartbeat extends \li3_analytics\extensions\adapter\Tracker {
 		return $this->_uid;
 	}
 
-	public function config(){
+	public function config(array $options = array()) {
 		if(!isset($this->_config['config'])) $this->_config['config'] = array();
 		return $this->_config['config'] + array('uid' => $this->key(), 'domain' => $this->_domain);
 	}
