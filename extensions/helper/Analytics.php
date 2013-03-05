@@ -80,7 +80,7 @@ class Analytics extends \lithium\template\Helper {
 		// Tracking object
 		$class = get_class($tracking);
 		// Adapter Name
-		$adapter = mb_substr($class, mb_strrpos($class, '\\')+1);
+		$adapter = substr($class, strrpos($class, '\\')+1);
 
 		$library = 'li3_analytics';
 
