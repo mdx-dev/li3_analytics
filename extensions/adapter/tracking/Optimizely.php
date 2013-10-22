@@ -22,8 +22,6 @@ class Optimizely extends \li3_analytics\extensions\adapter\Tracker {
 
 	protected $_autoConfig = array('project', 'views');
 
-	protected $_uri = "//cdn.optimizely.com/js/{:key}.js";
-
 	/**
 	 * Way to load tracker
 	 * `block`, `inline`
@@ -31,7 +29,7 @@ class Optimizely extends \li3_analytics\extensions\adapter\Tracker {
 	 * `inline` loads a javascript link.
 	 * @var string
 	 */
-	protected $_type = "inline";
+	protected $_type = "block";
 
 	/**
 	 * Optimizely project code
