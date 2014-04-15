@@ -36,10 +36,12 @@ class Analytics extends \lithium\template\Helper {
 
 				if(!empty($this->_sections["{$position}_{$method}"]) && $section = $this->_sections["{$position}_{$method}"]){
 
+					$trackers="";
 					foreach($section as $tracker){
-						echo "\n{$this->_track($tracker['tracker'], $tracker['view'])}\n";
+						$trackers .= "\n{$this->_track($tracker['tracker'], $tracker['view'])}\n";
 						$this->_trackers[$tracker['tracker']->name()][] = "{$position}_{$method}";
 					}
+					return $trackers;
 
 				}
 
