@@ -2,9 +2,9 @@
 
 namespace li3_analytics\extensions\adapter\tracking;
 
-class Gtm extends \li3_analytics\extensions\adapter\Tracker {
+class GoogleTagManager extends \li3_analytics\extensions\adapter\Tracker {
 	/**
-	 * Quantcast Analytics account
+	 * Google Tag Manager account
 	 *
 	 * @var string
 	 */
@@ -15,7 +15,7 @@ class Gtm extends \li3_analytics\extensions\adapter\Tracker {
 	 * @var array
 	 */
 	protected $_views = array(
-		'prepend_body' => 'gtm'
+		'prepend_body' => 'googletagmanager'
 	);
 
 	/**
