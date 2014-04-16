@@ -28,9 +28,9 @@ class Analytics extends \lithium\template\Helper {
 	public function __call($method, $options){
 
 		// Build block sections
-		if($method === 'head' OR $method === 'body'){
+		if($method === 'head' OR $method === 'body') {
 
-			$position = ($options[0] == 'prepend' OR $options[0] == 'append') ? $options[0] : false;
+			$position = ($options[0] == 'prepend' OR $options[0] == 'append' OR $options[0] == 'prependGtm') ? $options[0] : false;
 
 			if($position){
 

@@ -15,7 +15,8 @@ class GoogleTagManager extends \li3_analytics\extensions\adapter\Tracker {
 	 * @var array
 	 */
 	protected $_views = array(
-		'prepend_body' => 'googletagmanager'
+		'prepend_body' => 'googletagmanager',
+		'prependGtm_body' => 'googletagmanager'  //used for vitalsChoices
 	);
 
 	/**
